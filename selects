@@ -1,0 +1,155 @@
+use classicmodels;
+
+select customerName, amount 
+	from customers c 
+	inner join payments p
+    on c.customerNumber = p.customerNumber;
+
+select firstName, lastName, email, country
+	from employees e 
+	inner join offices o
+    on o.officeCode = "1";
+    
+select firstName, lastName, country
+	from employees e 
+	inner join offices o
+    on o.officeCode = "2"
+    order by firstName;
+    
+select firstName, lastName, country
+	from employees e 
+	inner join offices o
+    on o.officeCode = "5"
+    order by lastName;
+    
+select firstName, email, city
+	from employees e
+    join offices 
+    order by firstName;
+    
+select lastName, email, city
+	from employees e
+    join offices 
+    order by city;
+
+select employeeNumber, firstName, lastName, customerName
+	from employees e
+	inner join customers c
+	on c.salesRepEmployeeNumber = e.employeeNumber
+	order by customerName;
+
+select customerName, addressLine1, creditLimit, postalCode 
+	from customers
+	where postalCode = "4110"
+    order by customerName;
+
+select customerName, phone, city, shippedDate, "status"
+	from customers c
+	inner join orders o
+	on c.customerNumber = o.customerNumber
+	order by requiredDate;
+
+select sum(amount) 
+	from payments
+	where customerNumber = "114";
+
+select customerName, amount 
+	from customers c
+	inner join payments p
+	on c.customerNumber = p.customerNumber
+	where amount>10000 and amount<20000
+	order by amount;
+
+select paymentDate, shippedDate
+	from orders o
+	inner join payments p
+	on o.customerNumber = p.customerNumber
+	order by paymentDate;
+
+select firstName, lastName, email, jobTitle
+	from employees
+	where jobTitle = "Sales Rep";
+
+select customerName, addressLine1, creditLimit, postalCode
+	from customers
+	where postalCode = "44000";
+
+select customerName, contactFirstName, contactLastName, creditLimit
+	from customers 
+    where creditLimit = 0;
+
+select customerName, addressLine1, creditLimit 
+	from customers
+	where country = "Norway"
+	order by customerNumber;
+
+select sum(amount) 
+	from customers c
+	inner join payments p
+	on c.customerNumber = p.customerNumber
+	where country = "Australia";
+
+select customerName, addressLine2 
+	from customers
+    where addressLine2 != 0;
+    
+select customerName, sum(amount)
+	from customers c
+    inner join payments p
+	on p.customerNumber and c.customerNumber = "124";
+    
+select customerName, addressLine1, creditLimit 
+	from customers
+	where city = "NYC";
+    
+select sum(amount)
+	from customers c
+	inner join payments p
+	on c.customerNumber = p.customerNumber
+	where city = "Las Vegas";
+    
+select employeeNumber, firstName, lastName, customerName
+	from employees e
+	left join customers c
+	on c.salesRepEmployeeNumber = e.employeeNumber
+	order by customerName;
+    
+select paymentDate, shippedDate, status
+	from orders o
+	left join payments p
+	on o.customerNumber = p.customerNumber
+	order by paymentDate;
+    
+select customerName, city, max(creditLimit)
+	from customers;
+    
+select customerName, city, creditLimit
+	from customers
+    where creditLimit = 0;
+    
+select customerName, city, creditLimit
+	from customers
+    where creditLimit > 100000
+    order by customerName;
+    
+select firstName, lastName, email, jobTitle
+	from employees
+	where jobTitle = "Sales Rep" 
+    and officeCode = 2;
+    
+select customerName, amount 
+	from customers c 
+	left join payments p
+    on c.customerNumber = p.customerNumber
+    order by customerName;
+    
+select max(orderDate), status, city
+	from orders o
+    inner join customers c
+    on o.customerNumber = c.customerNumber;
+    
+select orderNumber, customerName, city
+from orders o
+inner join customers c
+on c.customerNumber = o.customerNumber
+where orderNumber > 10200 and orderNumber < 10300;
